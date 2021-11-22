@@ -6,27 +6,25 @@
 /*   By: mmateo-t <mmateo-t@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 10:06:42 by mmateo-t          #+#    #+#             */
-/*   Updated: 2021/11/22 11:59:50 by mmateo-t         ###   ########.fr       */
+/*   Updated: 2021/11/22 12:55:59 by mmateo-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	parse_arguments(char **argv, unsigned int **option)
+int	*parse_arguments(int num, char **argv)
 {
 	int	i;
-	int	num;
+	int *option;
 
 	i = 1;
+	option = (int *)malloc(sizeof(int) * num);
 	while (argv[i])
 	{
-		num = ft_atoi(argv[i]);
-		//printf("%i\n", num);
-		if (num < 0)
-			return (-1);
-		*option[i - 1] = (unsigned int)(num);
-		printf("%i\n", *option[i - 1]);
+		option[i - 1] = ft_atoi(argv[i]);
+		if (option[i - 1] < 0)
+			return (NULL);
 		i++;
 	}
-	return (0);
+	return (option);
 }

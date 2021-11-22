@@ -10,7 +10,7 @@
 			"request": "launch",
 			"program": "/home/miguel/42Cursus/philosophers/philo",
 			"args": ["1", "2", "3" , "4"],
-			"stopAtEntry": false,
+			"stopAtEntry": true,
 			"cwd": "${fileDirname}",
 			"environment": [],
 			"externalConsole": false,

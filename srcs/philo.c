@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmateo-t <mmateo-t@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 10:06:19 by mmateo-t          #+#    #+#             */
-/*   Updated: 2021/11/22 12:00:27 by mmateo-t         ###   ########.fr       */
+/*   Updated: 2021/11/22 13:01:18 by mmateo-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,13 @@
 int main(int argc, char **argv)
 {
 //	t_philo philo;
-	unsigned int	*option;
-	printf("%i\n", argc);
+	int	*option;
 
 	if ((argc < 5 || argc > 6))
 		return (-1);
-	option = (unsigned int *)malloc(sizeof(unsigned int) * (argc - 1));
-	if (parse_arguments(argv, &option) < 0)
-		return (-1);
-	//test(option);
+	option = parse_arguments(argc - 1, argv);
+	if (!option)
+		return(-1);
+	test(option, argc);
 	return (0);
 }

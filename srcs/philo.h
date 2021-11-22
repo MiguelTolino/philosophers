@@ -6,7 +6,7 @@
 /*   By: mmateo-t <mmateo-t@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 10:07:08 by mmateo-t          #+#    #+#             */
-/*   Updated: 2021/11/22 11:16:46 by mmateo-t         ###   ########.fr       */
+/*   Updated: 2021/11/22 13:01:00 by mmateo-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct t_philo
 
 int	ft_atoi(const char *str);
 int	throw_error(char *str);
-int	parse_arguments(char **argv, unsigned int **option);
-void test(unsigned int *option);
+int	*parse_arguments(int num, char **argv);
+void test(int *option, int argc);
 
 #endif
