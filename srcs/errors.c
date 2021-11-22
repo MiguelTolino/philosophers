@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmateo-t <mmateo-t@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/22 10:06:19 by mmateo-t          #+#    #+#             */
-/*   Updated: 2021/11/22 12:00:27 by mmateo-t         ###   ########.fr       */
+/*   Created: 2021/11/22 10:32:45 by mmateo-t          #+#    #+#             */
+/*   Updated: 2021/11/22 11:04:22 by mmateo-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int main(int argc, char **argv)
+size_t	ft_strlen(const char *str)
 {
-//	t_philo philo;
-	unsigned int	*option;
-	printf("%i\n", argc);
+	int i;
 
-	if ((argc < 5 || argc > 6))
-		return (-1);
-	option = (unsigned int *)malloc(sizeof(unsigned int) * (argc - 1));
-	if (parse_arguments(argv, &option) < 0)
-		return (-1);
-	//test(option);
-	return (0);
+	i = 0;
+	while (str[i])
+	{
+		i++;
+	}
+	return (i);
+}
+
+int	throw_error(char *str)
+{
+	write(2, str, ft_strlen(str));
+	return (-1);
 }

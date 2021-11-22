@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parse_arguments.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmateo-t <mmateo-t@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/22 10:06:19 by mmateo-t          #+#    #+#             */
-/*   Updated: 2021/11/22 12:00:27 by mmateo-t         ###   ########.fr       */
+/*   Created: 2021/11/22 10:06:42 by mmateo-t          #+#    #+#             */
+/*   Updated: 2021/11/22 11:59:50 by mmateo-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int main(int argc, char **argv)
+int	parse_arguments(char **argv, unsigned int **option)
 {
-//	t_philo philo;
-	unsigned int	*option;
-	printf("%i\n", argc);
+	int	i;
+	int	num;
 
-	if ((argc < 5 || argc > 6))
-		return (-1);
-	option = (unsigned int *)malloc(sizeof(unsigned int) * (argc - 1));
-	if (parse_arguments(argv, &option) < 0)
-		return (-1);
-	//test(option);
+	i = 1;
+	while (argv[i])
+	{
+		num = ft_atoi(argv[i]);
+		//printf("%i\n", num);
+		if (num < 0)
+			return (-1);
+		*option[i - 1] = (unsigned int)(num);
+		printf("%i\n", *option[i - 1]);
+		i++;
+	}
 	return (0);
 }

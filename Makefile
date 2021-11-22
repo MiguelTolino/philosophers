@@ -6,7 +6,7 @@
 #    By: mmateo-t <mmateo-t@student.42madrid>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/24 16:04:19 by user42            #+#    #+#              #
-#    Updated: 2021/11/17 10:19:53 by mmateo-t         ###   ########.fr        #
+#    Updated: 2021/11/22 12:04:55 by mmateo-t         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ DEBUG_FLAG:= -g
 all:	$(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(THREADF) $(OBJS) -o $(NAME)
+	$(CC) $(CFLAGS) $(THREADF) $(OBJS) -o $(NAME) -g
 
 $(%.o): $(%.c)
 		$(CC) -c $^ -o $@
