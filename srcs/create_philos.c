@@ -6,7 +6,7 @@
 /*   By: mmateo-t <mmateo-t@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 14:34:37 by mmateo-t          #+#    #+#             */
-/*   Updated: 2021/12/01 15:04:59 by mmateo-t         ###   ########.fr       */
+/*   Updated: 2021/12/01 20:52:30 by mmateo-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,26 +42,31 @@ int check_turn(int id, int *turn_id)
 	return (0);
 }
 
-void *eat_think_sleep(void *p)
+void *eat_think_sleep(void *philo)
 {
-	t_philo *v;
+	t_philo *p;
 
-	v = (t_philo *)p;
-	if (v->id == 1)
+	p = (t_philo *)philo;
+/* 	if (check_turn(p->id, p->turn_id))
 	{
-		printf("Hola mundo\n");
-	}
-	
+		printf("ID: %i\n", p->id); */
+/* 		pthread_mutex_lock(&p->left_fork.mutex);
+		//print_log("has taken a fork", diff_time(p->t1, get_time()), p->id, p);
+		pthread_mutex_lock(&p->right_fork.mutex);
+		//print_log("has taken a fork", diff_time(p->t1, get_time()), p->id, p);
+		pthread_mutex_unlock(&p->left_fork.mutex);
+		pthread_mutex_unlock(&p->right_fork.mutex); */
 }
 
-int	create_philos(t_struct *p)
+int	create_philos(t_philo *philo)
 {
 	int i;
 	
 	i = 0;
-	while (i < p->option[NUM_OF_PHILOS])
+	while (i < philo->option[NUM_OF_PHILOS])
 	{
-		if (pthread_create(&p->philo[i].th, NULL, &eat_think_sleep, &p->philo[i]) != 0)
+		//philo->t1 = get_time();
+		if (pthread_create(&philo[i].th, NULL, &eat_think_sleep, &philo[i]) != 0)
 			return (1);
 		i++;
 	}

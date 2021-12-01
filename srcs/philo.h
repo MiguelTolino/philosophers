@@ -6,7 +6,7 @@
 /*   By: mmateo-t <mmateo-t@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 10:07:08 by mmateo-t          #+#    #+#             */
-/*   Updated: 2021/12/01 19:06:12 by mmateo-t         ###   ########.fr       */
+/*   Updated: 2021/12/01 20:43:57 by mmateo-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,27 +49,20 @@ typedef struct t_philo
 	pthread_mutex_t print_mutex;
 	int	all_ate;
 	int *turn_id;
+	long t1;
+	long timestamp;
 } t_philo;
 
-typedef struct t_struct
-{
-	t_philo *philo;
-	t_fork	*fork;
-	int		*option;
-	int		all_ate;
-	pthread_mutex_t print_mutex;
-	int *turn_id;
-}	t_struct;
-
-int	ft_atoi(const char *str);
-size_t ft_strlen(const char *str);
-int	throw_error(char *str);
-int	create_philos(t_struct *p);
-int	*parse_arguments(int num, char **argv);
-void test(t_philo *philo);
-int init(int *option, t_philo **philo, t_fork **fork);
-int destroy_struct(t_struct p);
-void print_log(char *str, long timestamp, int philo_nb, t_struct p);
-long diff_time(struct timeval *t1, struct timeval *t2);
+int		ft_atoi(const char *str);
+size_t	ft_strlen(const char *str);
+int		throw_error(char *str);
+int		create_philos(t_philo *philo);
+int		*parse_arguments(int num, char **argv);
+void	test(t_philo *philo);
+int		init(int *option, t_philo **philo, t_fork **fork);
+int		destroy_struct(t_philo *philo, t_fork *fork, int *option);
+void	print_log(char *str, long timestamp, int philo_nb, t_philo *p);
+long	diff_time(long t1, long t2);
+long	get_time(void);
 
 #endif

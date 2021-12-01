@@ -6,7 +6,7 @@
 /*   By: mmateo-t <mmateo-t@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 19:20:45 by mmateo-t          #+#    #+#             */
-/*   Updated: 2021/12/01 19:05:45 by mmateo-t         ###   ########.fr       */
+/*   Updated: 2021/12/01 19:23:37 by mmateo-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,6 @@ int init(int *option, t_philo **philo, t_fork **fork)
 	}
 	*philo = philo_aux;
 	*fork = fork_aux;
+	//free(turn_id);
 	return (0);
 }
