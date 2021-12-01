@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_arguments.c                                  :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmateo-t <mmateo-t@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/22 10:06:42 by mmateo-t          #+#    #+#             */
-/*   Updated: 2021/11/29 14:41:47 by mmateo-t         ###   ########.fr       */
+/*   Created: 2021/11/29 19:20:45 by mmateo-t          #+#    #+#             */
+/*   Updated: 2021/12/01 10:50:34 by mmateo-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	*parse_arguments(int num, char **argv)
+int init(t_struct *p)
 {
-	int	i;
-	int *option;
+	int i;
 
-	i = 1;
-	option = (int *)malloc(sizeof(int) * num);
-	while (argv[i])
+	i = 0;
+	p->all_ate = 0;
+	p->philo = (t_philo *)malloc(sizeof(t_philo) * p->option[NUM_OF_PHILOS]);
+	p->fork = (t_fork *)malloc(sizeof(t_fork) * p->option[NUM_OF_PHILOS]);
+	while (i < p->option[NUM_OF_PHILOS])
 	{
-		option[i - 1] = ft_atoi(argv[i]);
-		if (option[i - 1] <= 0)
-			return (NULL);
+		p->philo[i].has_ate = 0;
+		p->philo[i].id = i + 1;
+		p->fork[i].id = i;
+		pthread_mutex_init(&p->fork[i].mutex, NULL);
 		i++;
 	}
-	return (option);
+	return (0);
 }

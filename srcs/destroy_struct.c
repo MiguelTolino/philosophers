@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_arguments.c                                  :+:      :+:    :+:   */
+/*   destroy_struct.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmateo-t <mmateo-t@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/22 10:06:42 by mmateo-t          #+#    #+#             */
-/*   Updated: 2021/11/29 14:41:47 by mmateo-t         ###   ########.fr       */
+/*   Created: 2021/12/01 10:56:07 by mmateo-t          #+#    #+#             */
+/*   Updated: 2021/12/01 11:01:12 by mmateo-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	*parse_arguments(int num, char **argv)
+int destroy_struct(t_struct p)
 {
-	int	i;
-	int *option;
+	int i;
 
-	i = 1;
-	option = (int *)malloc(sizeof(int) * num);
-	while (argv[i])
+	i = 0;
+	while (i < p.option[NUM_OF_PHILOS])
 	{
-		option[i - 1] = ft_atoi(argv[i]);
-		if (option[i - 1] <= 0)
-			return (NULL);
+		if (pthread_join(p.philo[i].th, NULL) != 0)
+			return (1);
+		pthread_mutex_destroy(&p.fork[i].mutex);
 		i++;
 	}
-	return (option);
+	free(p.fork);
+	free(p.philo);
+	free(p.option);
+	return (0);
 }

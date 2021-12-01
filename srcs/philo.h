@@ -6,7 +6,7 @@
 /*   By: mmateo-t <mmateo-t@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 10:07:08 by mmateo-t          #+#    #+#             */
-/*   Updated: 2021/11/22 13:01:00 by mmateo-t         ###   ########.fr       */
+/*   Updated: 2021/12/01 11:24:59 by mmateo-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,31 @@
 typedef struct t_philo
 {
 	pthread_t	th;
-	int	num;
+	int	id;
+	int has_ate;
 } t_philo;
 
+typedef struct t_fork
+{
+	int	id;
+	pthread_mutex_t mutex;
+}	t_fork;
+
+typedef struct t_struct
+{
+	t_philo *philo;
+	t_fork	*fork;
+	int		*option;
+	int		all_ate;
+}	t_struct;
+
 int	ft_atoi(const char *str);
+size_t ft_strlen(const char *str);
 int	throw_error(char *str);
+int	create_philos(t_struct *p);
 int	*parse_arguments(int num, char **argv);
-void test(int *option, int argc);
+void test(t_struct p);
+int init(t_struct *p);
+int destroy_struct(t_struct p);
 
 #endif
