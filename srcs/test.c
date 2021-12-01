@@ -6,13 +6,25 @@
 /*   By: mmateo-t <mmateo-t@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 11:08:35 by mmateo-t          #+#    #+#             */
-/*   Updated: 2021/12/01 10:52:51 by mmateo-t         ###   ########.fr       */
+/*   Updated: 2021/12/01 12:45:28 by mmateo-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void test(t_struct p)
+
+void test2(t_struct p)
+{
+	int i = 0;
+	int num = p.option[NUM_OF_PHILOS] / 2;
+	while (i < num)
+	{
+		printf("%i\n", p.turn_id[i]);
+		i++;
+	}
+}
+
+void test3(t_struct p)
 {
 	int i = 0;
 	while (i < p.option[NUM_OF_PHILOS])
@@ -24,3 +36,12 @@ void test(t_struct p)
 	}
 	printf("All ate? :%i\n", p.all_ate);
 }
+
+
+
+void test(t_struct p)
+{
+	test2(p);
+	//test3(p);
+}
+

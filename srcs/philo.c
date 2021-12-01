@@ -6,7 +6,7 @@
 /*   By: mmateo-t <mmateo-t@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 10:06:19 by mmateo-t          #+#    #+#             */
-/*   Updated: 2021/12/01 11:16:23 by mmateo-t         ###   ########.fr       */
+/*   Updated: 2021/12/01 12:45:47 by mmateo-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,5 @@ int main(int argc, char **argv)
 		return(throw_error("Error: There was an error"));
 	if (destroy_struct(p))
 		return (throw_error("Error: A problem in joins threads occurs"));
-	//test(p);
 	return (0);
 }
