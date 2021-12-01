@@ -6,7 +6,7 @@
 /*   By: mmateo-t <mmateo-t@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 10:56:07 by mmateo-t          #+#    #+#             */
-/*   Updated: 2021/12/01 11:01:12 by mmateo-t         ###   ########.fr       */
+/*   Updated: 2021/12/01 12:38:20 by mmateo-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,10 @@ int destroy_struct(t_struct p)
 		pthread_mutex_destroy(&p.fork[i].mutex);
 		i++;
 	}
+	pthread_mutex_destroy(&p.print_mutex);
 	free(p.fork);
 	free(p.philo);
 	free(p.option);
+	free(p.turn_id);
 	return (0);
 }

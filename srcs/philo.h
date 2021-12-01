@@ -6,7 +6,7 @@
 /*   By: mmateo-t <mmateo-t@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 10:07:08 by mmateo-t          #+#    #+#             */
-/*   Updated: 2021/12/01 14:23:12 by mmateo-t         ###   ########.fr       */
+/*   Updated: 2021/12/01 19:06:12 by mmateo-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,24 @@
 #define THINK "is thinking"
 #define SLEEP "is sleeping"
 
-typedef struct t_philo
-{
-	pthread_t	th;
-	int	id;
-	int has_ate;
-} t_philo;
-
 typedef struct t_fork
 {
 	int	id;
 	pthread_mutex_t mutex;
 }	t_fork;
+
+typedef struct t_philo
+{
+	pthread_t	th;
+	int	id;
+	int has_ate;
+	t_fork left_fork;
+	t_fork right_fork;
+	int	*option;
+	pthread_mutex_t print_mutex;
+	int	all_ate;
+	int *turn_id;
+} t_philo;
 
 typedef struct t_struct
 {
@@ -60,8 +66,8 @@ size_t ft_strlen(const char *str);
 int	throw_error(char *str);
 int	create_philos(t_struct *p);
 int	*parse_arguments(int num, char **argv);
-void test(t_struct p);
-int init(t_struct *p);
+void test(t_philo *philo);
+int init(int *option, t_philo **philo, t_fork **fork);
 int destroy_struct(t_struct p);
 void print_log(char *str, long timestamp, int philo_nb, t_struct p);
 long diff_time(struct timeval *t1, struct timeval *t2);

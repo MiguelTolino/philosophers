@@ -10,7 +10,7 @@
 			"request": "launch",
 			"program": "/home/user/42Cursus/philosophers/philo",
 			"args": ["5", "100", "300", "400"],
-			"stopAtEntry": true,
+			"stopAtEntry": false,
 			"cwd": "${fileDirname}",
 			"environment": [],
 			"externalConsole": false,

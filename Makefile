@@ -6,7 +6,7 @@
 #    By: mmateo-t <mmateo-t@student.42madrid>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/24 16:04:19 by user42            #+#    #+#              #
-#    Updated: 2021/11/29 19:54:57 by mmateo-t         ###   ########.fr        #
+#    Updated: 2021/12/01 13:16:22 by mmateo-t         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ SRCS := $(wildcard $(SRCS_DIR)*.c)
 OBJS := $(SRCS:%.c=%.o)
 NAME:= philo
 CC:= cc
-#CFLAGS:= -Wall -Werror -Wextra -g
+CFLAGS:= -g #-Wall -Werror -Wextra
 THREADF:= -pthread
 RM :=	rm -rvf
 DEBUG_FLAG:= -g
