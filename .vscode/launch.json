@@ -9,7 +9,7 @@
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "/home/user/42Cursus/philosophers/philo",
-			"args": ["5", "100", "300", "400"],
+			"args": ["5", "100", "100", "100"],
 			"stopAtEntry": false,
 			"cwd": "${fileDirname}",
 			"environment": [],

@@ -6,7 +6,7 @@
 /*   By: mmateo-t <mmateo-t@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 19:20:45 by mmateo-t          #+#    #+#             */
-/*   Updated: 2021/12/02 11:24:05 by mmateo-t         ###   ########.fr       */
+/*   Updated: 2021/12/02 18:23:05 by mmateo-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,44 +32,42 @@ int *turn(int *option)
 	return (turn_id);
 }
 
-int init(int *option, t_philo **philo, t_fork **fork)
+int init(t_fork **fork, t_philo **philo, t_data *data)
 {
 	int i;
-	int *turn_id;
-	t_philo *philo_aux;
-	t_fork *fork_aux;
+	t_fork *f;
+	t_philo *p;
 
+	f = *fork;
+	p = *philo;
 	i = 0;
-	philo_aux = *philo;
-	fork_aux = *fork;
-	philo_aux = (t_philo *)malloc(sizeof(t_philo) * option[NUM_OF_PHILOS]);
-	fork_aux = (t_fork *)malloc(sizeof(t_fork) * option[NUM_OF_PHILOS]);
-	turn_id = turn(option);
-	while (i < option[NUM_OF_PHILOS])
+	
+	p = (t_philo *)malloc(sizeof(t_philo) * data->option[NUM_OF_PHILOS]);
+	f = (t_fork *)malloc(sizeof(t_fork) * data->option[NUM_OF_PHILOS]);
+	data->turn_id = turn(data->option);
+	data->all_ate = 0;
+	pthread_mutex_init(&data->print_mutex, NULL);
+	while (i < data->option[NUM_OF_PHILOS])
 	{
-		philo_aux[i].all_ate = 0;
-		philo_aux[i].die = 0;
-		philo_aux[i].has_ate = 0;
-		philo_aux[i].id = i + 1;
-		philo_aux[i].option = option;
- 		pthread_mutex_init(&philo_aux[i].print_mutex, NULL);
-		philo_aux[i].turn_id = turn_id;
-		fork_aux[i].id = i + 1;
-		pthread_mutex_init(&fork_aux[i].mutex, NULL);
+		p[i].die = 0;
+		p[i].has_ate = 0;
+		p[i].id = i + 1;
+		p[i].data = data;
+		f[i].id = i + 1;
+		pthread_mutex_init(&f[i].mutex, NULL);
 		i++;
 	}
 	i = 0;
-	while (i < option[NUM_OF_PHILOS])
+	while (i < data->option[NUM_OF_PHILOS])
 	{
-		philo_aux[i].left_fork = fork_aux[i];
-		if (i == option[NUM_OF_PHILOS] - 1)
-			philo_aux[i].right_fork = fork_aux[0];
+		p[i].left_fork = f[i];
+		if (i == data->option[NUM_OF_PHILOS] - 1)
+			p[i].right_fork = f[0];
 		else
-			philo_aux[i].right_fork = fork_aux[i + 1];
+			p[i].right_fork = f[i + 1];
 		i++;
 	}
-	*philo = philo_aux;
-	*fork = fork_aux;
-	//free(turn_id);
+	*philo = p;
+	*fork = f;
 	return (0);
 }
