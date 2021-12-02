@@ -6,7 +6,7 @@
 /*   By: mmateo-t <mmateo-t@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 10:07:08 by mmateo-t          #+#    #+#             */
-/*   Updated: 2021/12/02 17:49:18 by mmateo-t         ###   ########.fr       */
+/*   Updated: 2021/12/02 18:47:35 by mmateo-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int		create_philos(t_philo *philo);
 int		*parse_arguments(int num, char **argv);
 void	test(t_philo *philo);
 int		init(t_fork **fork, t_philo **philo, t_data *data);
-int		destroy_struct(t_fork *fork, t_philo *philo);
+int		destroy_struct(t_fork *fork, t_philo *philo, t_data *data);
 void	print_log(char *str, long long timestamp, int philo_nb, t_data *data);
 long long	diff_time(long long t1, long long t2);
 long long	get_time(void);

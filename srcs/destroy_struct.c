@@ -6,13 +6,13 @@
 /*   By: mmateo-t <mmateo-t@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 10:56:07 by mmateo-t          #+#    #+#             */
-/*   Updated: 2021/12/02 17:26:53 by mmateo-t         ###   ########.fr       */
+/*   Updated: 2021/12/02 18:47:59 by mmateo-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int destroy_struct(t_fork *fork, t_philo *philo)  
+int destroy_struct(t_fork *fork, t_philo *philo, t_data *data)
 {
 	int i;
 
@@ -27,6 +27,7 @@ int destroy_struct(t_fork *fork, t_philo *philo)
 	pthread_mutex_destroy(&philo->data->print_mutex);
 	free(fork);
 	free(philo);
-	//free(philo[0].turn_id); //FIXME: Pointer must be freed
+	free(data->turn_id);
+	free(data->option);
 	return (0);
 }

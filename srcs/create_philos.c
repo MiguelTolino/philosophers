@@ -6,7 +6,7 @@
 /*   By: mmateo-t <mmateo-t@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 14:34:37 by mmateo-t          #+#    #+#             */
-/*   Updated: 2021/12/02 18:38:55 by mmateo-t         ###   ########.fr       */
+/*   Updated: 2021/12/02 18:42:13 by mmateo-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int check_turn(t_philo p)
 
 	p = *(t_philo*)philo;
 	data = p.data;
-	while (!p.die)
+//	while (!p.die)
 	{
 		if (p.id == 1 || p.id == 3)
 		{
@@ -119,5 +119,6 @@ int	create_philos(t_philo *philo)
 			return (1);
 		i++;
 	}
+	printf("Bad habits comemierda\n");
 	return (0);
 }
