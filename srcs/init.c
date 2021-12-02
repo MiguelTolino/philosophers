@@ -6,12 +6,11 @@
 /*   By: mmateo-t <mmateo-t@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 19:20:45 by mmateo-t          #+#    #+#             */
-/*   Updated: 2021/12/01 19:23:37 by mmateo-t         ###   ########.fr       */
+/*   Updated: 2021/12/02 11:24:05 by mmateo-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-#define NUM_OF_FORKS 2
 
 int *turn(int *option)
 {
@@ -49,6 +48,7 @@ int init(int *option, t_philo **philo, t_fork **fork)
 	while (i < option[NUM_OF_PHILOS])
 	{
 		philo_aux[i].all_ate = 0;
+		philo_aux[i].die = 0;
 		philo_aux[i].has_ate = 0;
 		philo_aux[i].id = i + 1;
 		philo_aux[i].option = option;

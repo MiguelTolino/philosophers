@@ -6,7 +6,7 @@
 /*   By: mmateo-t <mmateo-t@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 10:07:08 by mmateo-t          #+#    #+#             */
-/*   Updated: 2021/12/01 20:43:57 by mmateo-t         ###   ########.fr       */
+/*   Updated: 2021/12/02 11:23:48 by mmateo-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 # define TIME_TO_EAT 2
 # define TIME_TO_SLEEP 3
 # define NUM_OF_TIMES_EAT 4
+
+#define NUM_OF_FORKS 2
 
 //Log message
 #define FORK "has taken a fork"
@@ -49,8 +51,10 @@ typedef struct t_philo
 	pthread_mutex_t print_mutex;
 	int	all_ate;
 	int *turn_id;
-	long t1;
-	long timestamp;
+	long long t1;
+	long long timestamp;
+	long long time_last_meal;
+	int die;
 } t_philo;
 
 int		ft_atoi(const char *str);
@@ -61,8 +65,9 @@ int		*parse_arguments(int num, char **argv);
 void	test(t_philo *philo);
 int		init(int *option, t_philo **philo, t_fork **fork);
 int		destroy_struct(t_philo *philo, t_fork *fork, int *option);
-void	print_log(char *str, long timestamp, int philo_nb, t_philo *p);
-long	diff_time(long t1, long t2);
-long	get_time(void);
+void	print_log(char *str, long long timestamp, int philo_nb, t_philo *p);
+long long	diff_time(long long t1, long long t2);
+long long	get_time(void);
+int 		*turn2(int *option);
 
 #endif

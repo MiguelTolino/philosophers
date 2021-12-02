@@ -6,13 +6,17 @@
 /*   By: mmateo-t <mmateo-t@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 11:50:16 by mmateo-t          #+#    #+#             */
-/*   Updated: 2021/12/01 20:43:34 by mmateo-t         ###   ########.fr       */
+/*   Updated: 2021/12/01 22:17:11 by mmateo-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-long	get_time(void)
+/* Long long signed integer type
+[−9,223,372,036,854,775,807, +9,223,372,036,854,775,807] range.
+64	(%lli or %lld) */
+
+long long get_time(void)
 {
 	struct timeval	t;
 
@@ -20,7 +24,7 @@ long	get_time(void)
 	return ((t.tv_sec * 1000) + (t.tv_usec / 1000));
 }
 
-long	diff_time(long t1, long t2)
+long long diff_time(long long t1, long long t2)
 {
 	return (t2 - t1);
 }

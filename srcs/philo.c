@@ -6,7 +6,7 @@
 /*   By: mmateo-t <mmateo-t@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 10:06:19 by mmateo-t          #+#    #+#             */
-/*   Updated: 2021/12/01 20:52:26 by mmateo-t         ###   ########.fr       */
+/*   Updated: 2021/12/01 20:53:46 by mmateo-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int main(int argc, char **argv)
 		return(throw_error("Error: Some arguments failed\n"));
 	if (init(option, &philo, &fork))
 		return (throw_error("Error: Could not initializate threads"));
-	test(philo);
  	if (create_philos(philo))
 		return(throw_error("Error: There was an error"));
  	if (destroy_struct(philo, fork, option))
