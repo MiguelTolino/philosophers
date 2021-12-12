@@ -6,7 +6,7 @@
 /*   By: mmateo-t <mmateo-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 10:07:08 by mmateo-t          #+#    #+#             */
-/*   Updated: 2021/12/12 17:04:23 by mmateo-t         ###   ########.fr       */
+/*   Updated: 2021/12/12 20:20:26 by mmateo-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct t_data
 	int				n_eaters;
 	int				*option;
 	int				deaded;
+	long long		timestamp;
 }	t_data;
 
 typedef struct t_fork
@@ -58,7 +59,6 @@ typedef struct t_philo
 	t_fork		left_fork;
 	t_fork		right_fork;
 	long long	t1;
-	long long	timestamp;
 	long long	time_last_meal;
 	int			die;
 	t_data		*data;

@@ -6,7 +6,7 @@
 /*   By: mmateo-t <mmateo-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 14:34:37 by mmateo-t          #+#    #+#             */
-/*   Updated: 2021/12/12 18:30:34 by mmateo-t         ###   ########.fr       */
+/*   Updated: 2021/12/12 20:24:18 by mmateo-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,17 @@ void	death_checker(t_philo *philo)
 			pthread_mutex_unlock(&data->access_mutex);
 			i++;
 		}
+		usleep(100);
 		if (data->deaded)
 			break ;
-		//i = 0;
-/* 		while (r->nb_eat != -1 && i < r->nb_philo && p[i].x_ate >= r->nb_eat)
-			i++;
-		if (i == r->nb_philo)
-			r->all_ate = 1; */
+		i = 0;
+/*  	while (i < data->option[NUM_OF_PHILOS])
+		{
+			if (philo[i].has_ate >= data->option[TIME_TO_EAT])
+				i++;
+		}
+		if (i == data->option[TIME_TO_EAT])
+			data->all_ate = 1; */
 	}
 	
 }
@@ -72,7 +76,6 @@ void increment_turn(t_data *data, t_philo *p)
 	int i;
 	int len;
 
-	//pthread_mutex_lock(&data->access_mutex);
 	len = data->n_eaters;
 	i = 0;
 	while (i < len)
@@ -81,7 +84,6 @@ void increment_turn(t_data *data, t_philo *p)
 			return (1);
 		i++;
 	}
-	//pthread_mutex_unlock(&data->access_mutex);
 	return (0);
 }
 
@@ -92,25 +94,28 @@ void increment_turn(t_data *data, t_philo *p)
 
 	p = (t_philo*)philo;
 	data = p->data;
-
-//FIX: 1 filosofo && Si han comido las sufientes veces
+	p->t1 = get_time();
+//FIX: Si han comido las sufientes veces || BIG NUMBER OF PhiLOS
 	while (!data->deaded)
 	{
 		if (check_turn(data, *p))
 		{
 			pthread_mutex_lock(&p->left_fork.mutex);
-			print_log("has taken left fork", diff_time(p->t1, get_time()), p->id, data);
+			print_log("has taken left fork", diff_time(data->timestamp, get_time()), p->id, data);
 			pthread_mutex_lock(&p->right_fork.mutex);
-			print_log("has taken right fork", diff_time(p->t1, get_time()), p->id, data);
+			print_log("has taken right fork", diff_time(data->timestamp, get_time()), p->id, data);
 			p->time_last_meal = get_time();
-			print_log("is eating", diff_time(p->t1, p->time_last_meal), p->id, data);
+			print_log("is eating", diff_time(data->timestamp, p->time_last_meal), p->id, data);
 			smart_sleep(data->option[TIME_TO_EAT], data);
 			increment_turn(data, p);
+			p->has_ate++;
+			if (data->all_ate)
+				break;
 			pthread_mutex_unlock(&p->left_fork.mutex);
 			pthread_mutex_unlock(&p->right_fork.mutex);
-			print_log("is sleeping", diff_time(p->t1, get_time()), p->id, data);
+			print_log("is sleeping", diff_time(data->timestamp, get_time()), p->id, data);
 			smart_sleep(data->option[TIME_TO_SLEEP], data);
-			print_log("is thinking", diff_time(p->t1, get_time()), p->id, data);
+			print_log("is thinking", diff_time(data->timestamp, get_time()), p->id, data);
 		}
 	}
 	return (NULL);
@@ -121,9 +126,9 @@ int	create_philos(t_philo *philo)
 	int i;
 
 	i = 0;
+	philo->data->timestamp = get_time();
 	while (i < philo->data->option[NUM_OF_PHILOS])
 	{
-		philo[i].t1 = get_time();
 		if (pthread_create(&philo[i].th, NULL, &eat_think_sleep, &(philo[i])) != 0)
 			return (1);
 		philo[i].time_last_meal = get_time();

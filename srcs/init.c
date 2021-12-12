@@ -6,18 +6,18 @@
 /*   By: mmateo-t <mmateo-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 19:20:45 by mmateo-t          #+#    #+#             */
-/*   Updated: 2021/12/12 14:48:33 by mmateo-t         ###   ########.fr       */
+/*   Updated: 2021/12/12 19:55:11 by mmateo-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	*turn(int *option)
+int *turn(int *option)
 {
-	int	num;
-	int	i;
-	int	first;
-	int	*turn_id;
+	int num;
+	int i;
+	int first;
+	int *turn_id;
 
 	i = 0;
 	first = 1;
@@ -32,11 +32,11 @@ int	*turn(int *option)
 	return (turn_id);
 }
 
-int	init(t_fork **fork, t_philo **philo, t_data *data)
+int init(t_fork **fork, t_philo **philo, t_data *data)
 {
-	int		i;
-	t_fork	*f;
-	t_philo	*p;
+	int i;
+	t_fork *f;
+	t_philo *p;
 
 	f = *fork;
 	p = *philo;
