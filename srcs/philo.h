@@ -6,7 +6,7 @@
 /*   By: mmateo-t <mmateo-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 10:07:08 by mmateo-t          #+#    #+#             */
-/*   Updated: 2021/12/12 14:34:53 by mmateo-t         ###   ########.fr       */
+/*   Updated: 2021/12/12 17:04:23 by mmateo-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct t_data
 	int				*turn_id;
 	int				n_eaters;
 	int				*option;
+	int				deaded;
 }	t_data;
 
 typedef struct t_fork
@@ -76,6 +77,6 @@ void		print_log(char *str, long long timestamp,
 long long	diff_time(long long t1, long long t2);
 long long	get_time(void);
 int			*turn2(int *option);
-int			my_usleep(int usec);
+void		smart_sleep(long long time, t_data *data);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mmateo-t <mmateo-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 11:50:16 by mmateo-t          #+#    #+#             */
-/*   Updated: 2021/12/12 14:35:29 by mmateo-t         ###   ########.fr       */
+/*   Updated: 2021/12/12 17:03:18 by mmateo-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,17 @@ long long	get_time(void)
 long long	diff_time(long long t1, long long t2)
 {
 	return (t2 - t1);
+}
+
+void		smart_sleep(long long time, t_data *data)
+{
+	long long i;
+
+	i = get_time();
+	while (!(data->deaded))
+	{
+		if (diff_time(i, get_time()) >= time)
+			break ;
+		usleep(50);
+	}
 }

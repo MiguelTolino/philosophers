@@ -6,7 +6,7 @@
 /*   By: mmateo-t <mmateo-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 19:20:45 by mmateo-t          #+#    #+#             */
-/*   Updated: 2021/12/12 14:37:17 by mmateo-t         ###   ########.fr       */
+/*   Updated: 2021/12/12 14:48:33 by mmateo-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int	init(t_fork **fork, t_philo **philo, t_data *data)
 	data->turn_id = turn(data->option);
 	data->n_eaters = data->option[NUM_OF_PHILOS] / NUM_OF_FORKS;
 	data->all_ate = 0;
+	data->deaded = 0;
 	pthread_mutex_init(&data->print_mutex, NULL);
 	pthread_mutex_init(&data->access_mutex, NULL);
 	while (i < data->option[NUM_OF_PHILOS])
