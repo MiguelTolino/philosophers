@@ -6,7 +6,7 @@
 /*   By: mmateo-t <mmateo-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 10:07:08 by mmateo-t          #+#    #+#             */
-/*   Updated: 2021/12/12 20:20:26 by mmateo-t         ###   ########.fr       */
+/*   Updated: 2021/12/12 20:51:21 by mmateo-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,7 @@ int			*parse_arguments(int num, char **argv);
 void		test(t_philo *philo);
 int			init(t_fork **fork, t_philo **philo, t_data *data);
 int			destroy_struct(t_fork *fork, t_philo *philo, t_data *data);
-void		print_log(char *str, long long timestamp,
-				int philo_nb, t_data *data);
+void		print_log(char *str, int philo_nb, t_data *data);
 long long	diff_time(long long t1, long long t2);
 long long	get_time(void);
 int			*turn2(int *option);
