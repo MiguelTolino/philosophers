@@ -6,7 +6,7 @@
 /*   By: mmateo-t <mmateo-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 10:56:07 by mmateo-t          #+#    #+#             */
-/*   Updated: 2021/12/12 14:37:35 by mmateo-t         ###   ########.fr       */
+/*   Updated: 2021/12/12 21:54:13 by mmateo-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	destroy_struct(t_fork *fork, t_philo *philo, t_data *data)
 		i++;
 	}
 	pthread_mutex_destroy(&philo->data->print_mutex);
+	pthread_mutex_destroy(&philo->data->access_mutex);
 	pthread_mutex_destroy(&philo->data->access_mutex);
 	free(fork);
 	free(philo);

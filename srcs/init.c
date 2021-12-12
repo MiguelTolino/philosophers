@@ -6,7 +6,7 @@
 /*   By: mmateo-t <mmateo-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 19:20:45 by mmateo-t          #+#    #+#             */
-/*   Updated: 2021/12/12 21:41:36 by mmateo-t         ###   ########.fr       */
+/*   Updated: 2021/12/12 21:53:49 by mmateo-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int	init(t_fork **fork, t_philo **philo, t_data *data)
 	data->deaded = 0;
 	pthread_mutex_init(&data->print_mutex, NULL);
 	pthread_mutex_init(&data->access_mutex, NULL);
+	pthread_mutex_init(&data->eat_mutex, NULL);
 	while (i < data->option[NUM_OF_PHILOS])
 	{
 		p[i].die = 0;

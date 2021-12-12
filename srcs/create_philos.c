@@ -6,7 +6,7 @@
 /*   By: mmateo-t <mmateo-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 14:34:37 by mmateo-t          #+#    #+#             */
-/*   Updated: 2021/12/12 21:45:47 by mmateo-t         ###   ########.fr       */
+/*   Updated: 2021/12/12 23:15:03 by mmateo-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,13 @@ void	philo_eats(t_philo *p)
 	print_log("has taken left fork", p->id, data);
 	pthread_mutex_lock(&p->right_fork.mutex);
 	print_log("has taken right fork", p->id, data);
-	p->time_last_meal = get_time();
 	print_log("is eating", p->id, data);
+	p->time_last_meal = get_time();
 	smart_sleep(data->option[TIME_TO_EAT], data);
-	increment_turn(data, p);
+	p->has_ate++;
 	pthread_mutex_unlock(&p->left_fork.mutex);
 	pthread_mutex_unlock(&p->right_fork.mutex);
+	increment_turn(data, p);
 }
 
 void	death_checker(t_philo *philo)
@@ -61,7 +62,7 @@ void	death_checker(t_philo *philo)
 	while (!(data->all_ate))
 	{
 		i = 0;
-		while (i < data->option[NUM_OF_PHILOS] && !data->deaded)
+		while (i < data->option[NUM_OF_PHILOS] && !(data->deaded))
 		{
 			pthread_mutex_lock(&data->access_mutex);
 			time = diff_time(philo[i].time_last_meal, get_time());
@@ -76,14 +77,12 @@ void	death_checker(t_philo *philo)
 		usleep(100);
 		if (data->deaded)
 			break ;
-		i = 0;
-		/*  	while (i < data->option[NUM_OF_PHILOS])
-		{
-			if (philo[i].has_ate >= data->option[TIME_TO_EAT])
-				i++;
-		}
-		if (i == data->option[TIME_TO_EAT])
-			data->all_ate = 1; */
+ 		i = 0;
+/* 		while (data->option[NUM_OF_TIMES_EAT] > 0 && i < data->option[NUM_OF_PHILOS] && philo[i].has_ate >= data->option[NUM_OF_TIMES_EAT])
+			i++;
+		if (i == data->option[NUM_OF_PHILOS])
+			data->all_ate = 1;
+	} */
 	}
 }
 
@@ -104,8 +103,7 @@ int	check_turn(t_data *data, t_philo p)
 }
 
 	//FIX: Si han comido las sufientes veces || BIG NUMBER OF PhiLOS
-/*  	if (p->id % 2)
-		usleep(15000); */
+
 void	*eat_think_sleep(void *philo)
 {
 	t_philo	*p;
@@ -119,7 +117,6 @@ void	*eat_think_sleep(void *philo)
 		if (check_turn(data, *p))
 		{
 			philo_eats(p);
-			p->has_ate++;
 			if (data->all_ate)
 				break ;
 			print_log("is sleeping", p->id, data);
@@ -138,7 +135,7 @@ int	create_philos(t_philo *philo)
 	philo->data->timestamp = get_time();
 	while (i < philo->data->option[NUM_OF_PHILOS])
 	{
-		if (pthread_create(&philo[i].th, NULL,
+		if (pthread_create(&(philo[i].th), NULL,
 				&eat_think_sleep, &(philo[i])) != 0)
 			return (1);
 		philo[i].time_last_meal = get_time();

@@ -6,7 +6,7 @@
 /*   By: mmateo-t <mmateo-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 10:07:08 by mmateo-t          #+#    #+#             */
-/*   Updated: 2021/12/12 20:51:21 by mmateo-t         ###   ########.fr       */
+/*   Updated: 2021/12/12 21:53:33 by mmateo-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct t_data
 	int				all_ate;
 	pthread_mutex_t	print_mutex;
 	pthread_mutex_t	access_mutex;
+	pthread_mutex_t	eat_mutex;
 	int				*turn_id;
 	int				n_eaters;
 	int				*option;
