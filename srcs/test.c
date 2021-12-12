@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmateo-t <mmateo-t@student.42madrid>       +#+  +:+       +#+        */
+/*   By: mmateo-t <mmateo-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 11:08:35 by mmateo-t          #+#    #+#             */
-/*   Updated: 2021/12/02 17:20:50 by mmateo-t         ###   ########.fr       */
+/*   Updated: 2021/12/12 14:27:46 by mmateo-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-	void test4(t_philo *philo)
+/* 	void test4(t_philo *philo)
 	{
 		int i = 0;
 		int j = 0;
@@ -30,7 +30,7 @@
 			printf("TIME_TO_SLEEP: %i\n", philo->data->option[TIME_TO_SLEEP]);
 			printf("LeftForkID: %i\n", philo[i].left_fork.id);
 			printf("RightForkID: %i\n", philo[i].right_fork.id);
-			while (j < num)
+ 			while (j < num)
 			{
 				printf("TurnID%i: %i\n", j, philo->data->turn_id[j++]);
 			}
@@ -59,3 +59,4 @@ void test(t_philo *philo)
 	//test_ind(philo);
 }
 
+ */

@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmateo-t <mmateo-t@student.42madrid>       +#+  +:+       +#+        */
+/*   By: mmateo-t <mmateo-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 19:20:45 by mmateo-t          #+#    #+#             */
-/*   Updated: 2021/12/02 18:23:05 by mmateo-t         ###   ########.fr       */
+/*   Updated: 2021/12/12 14:37:17 by mmateo-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int *turn(int *option)
+int	*turn(int *option)
 {
-	int num;
-	int i;
-	int first;
-	int *turn_id;
+	int	num;
+	int	i;
+	int	first;
+	int	*turn_id;
 
 	i = 0;
 	first = 1;
@@ -32,21 +32,22 @@ int *turn(int *option)
 	return (turn_id);
 }
 
-int init(t_fork **fork, t_philo **philo, t_data *data)
+int	init(t_fork **fork, t_philo **philo, t_data *data)
 {
-	int i;
-	t_fork *f;
-	t_philo *p;
+	int		i;
+	t_fork	*f;
+	t_philo	*p;
 
 	f = *fork;
 	p = *philo;
 	i = 0;
-	
 	p = (t_philo *)malloc(sizeof(t_philo) * data->option[NUM_OF_PHILOS]);
 	f = (t_fork *)malloc(sizeof(t_fork) * data->option[NUM_OF_PHILOS]);
 	data->turn_id = turn(data->option);
+	data->n_eaters = data->option[NUM_OF_PHILOS] / NUM_OF_FORKS;
 	data->all_ate = 0;
 	pthread_mutex_init(&data->print_mutex, NULL);
+	pthread_mutex_init(&data->access_mutex, NULL);
 	while (i < data->option[NUM_OF_PHILOS])
 	{
 		p[i].die = 0;

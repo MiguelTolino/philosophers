@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   create_philos.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmateo-t <mmateo-t@student.42madrid>       +#+  +:+       +#+        */
+/*   By: mmateo-t <mmateo-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 14:34:37 by mmateo-t          #+#    #+#             */
-/*   Updated: 2021/12/02 18:42:13 by mmateo-t         ###   ########.fr       */
+/*   Updated: 2021/12/12 14:26:05 by mmateo-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int check_die(t_philo p, t_data *data)
+/* int check_die(t_philo p, t_data *data)
 {
 	long long time;
 	// Si (Timetodie + t1) - timetolastmeal < 0
@@ -20,7 +20,7 @@ int check_die(t_philo p, t_data *data)
 	if (time < 0)
 		return (1);
 	return (0);
-}
+} */
 /*
 
 int *turn2(int *option)
@@ -42,43 +42,50 @@ int *turn2(int *option)
 	}
 	return (turn_id);
 }
+*/
 
-void increment_turn(t_philo *p)
+void increment_turn(t_data *data, t_philo p)
 {
 	int i;
 	int len;
 
 	i = 0;
-	len = sizeof(p->turn_id) / sizeof(p->turn_id[0]);
+	len = data->n_eaters;
+	pthread_mutex_lock(&data->access_mutex);
 	while (i < len)
 	{
-		if (p->turn_id[i] == p->option[NUM_OF_PHILOS])
+		if (p.id == data->turn_id[i])
 		{
-			p->turn_id[i] = 1;
+			data->turn_id[i]++;
+			if (data->turn_id[i] == (data->option[NUM_OF_PHILOS] + 1))
+				data->turn_id[i] = 1;
 			break;
 		}
-		p->turn_id[i] += 1;
 		i++;
 	}
+	pthread_mutex_unlock(&data->access_mutex);
 }
- */
-int check_turn(t_philo p)
+
+ int check_turn(t_data *data, t_philo p)
 {
 	int i;
 	int len;
 
+	//pthread_mutex_lock(&data->access_mutex);
+	len = data->n_eaters;
 	i = 0;
-	int *turn_id = p.data->turn_id;
-	len = sizeof(turn_id) / sizeof(turn_id[0]);
-	printf("LEN: %i\n", len);
 	while (i < len)
 	{
-		if (p.id == p.data->turn_id[i])
+		if (p.id == data->turn_id[i])
 			return (1);
 		i++;
 	}
+	//pthread_mutex_unlock(&data->access_mutex);
 	return (0);
 }
+
+/* 1. 
+*/
 
  void *eat_think_sleep(void *philo)
 {
@@ -87,9 +94,10 @@ int check_turn(t_philo p)
 
 	p = *(t_philo*)philo;
 	data = p.data;
-//	while (!p.die)
+//	while (!p.die && data->all_ate)	//Crear funciones check_die y check_all_eat y increment turn | Iterar usleep en tiempos cortos
+	while (!p.die)
 	{
-		if (p.id == 1 || p.id == 3)
+		if (check_turn(data, p))
 		{
 			pthread_mutex_lock(&p.left_fork.mutex);
 			print_log("has taken left fork", diff_time(p.t1, get_time()), p.id, data);
@@ -97,14 +105,16 @@ int check_turn(t_philo p)
 			print_log("has taken right fork", diff_time(p.t1, get_time()), p.id, data);
 			p.time_last_meal = get_time();
 			print_log("is eating", diff_time(p.t1, p.time_last_meal), p.id, data);
-			usleep(data->option[TIME_TO_EAT]);
+			usleep(data->option[TIME_TO_EAT] * 1000);
+			increment_turn(data, p);
 			pthread_mutex_unlock(&p.left_fork.mutex);
 			pthread_mutex_unlock(&p.right_fork.mutex);
 			print_log("is sleeping", diff_time(p.t1, get_time()), p.id, data);
-			usleep(data->option[TIME_TO_SLEEP]);
+			usleep(data->option[TIME_TO_SLEEP] * 1000);
 			print_log("is thinking", diff_time(p.t1, get_time()), p.id, data);
 		}
 	}
+	return (NULL);
 }
 
 int	create_philos(t_philo *philo)
@@ -119,6 +129,6 @@ int	create_philos(t_philo *philo)
 			return (1);
 		i++;
 	}
-	printf("Bad habits comemierda\n");
+	//death_checker
 	return (0);
 }

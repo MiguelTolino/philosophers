@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmateo-t <mmateo-t@student.42madrid>       +#+  +:+       +#+        */
+/*   By: mmateo-t <mmateo-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 10:07:08 by mmateo-t          #+#    #+#             */
-/*   Updated: 2021/12/02 18:47:35 by mmateo-t         ###   ########.fr       */
+/*   Updated: 2021/12/12 14:34:53 by mmateo-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,9 @@ typedef struct t_data
 {
 	int				all_ate;
 	pthread_mutex_t	print_mutex;
+	pthread_mutex_t	access_mutex;
 	int				*turn_id;
+	int				n_eaters;
 	int				*option;
 }	t_data;
 
@@ -59,20 +61,21 @@ typedef struct t_philo
 	long long	time_last_meal;
 	int			die;
 	t_data		*data;
-} t_philo;
+}	t_philo;
 
-
-int		ft_atoi(const char *str);
-size_t	ft_strlen(const char *str);
-int		throw_error(char *str);
-int		create_philos(t_philo *philo);
-int		*parse_arguments(int num, char **argv);
-void	test(t_philo *philo);
-int		init(t_fork **fork, t_philo **philo, t_data *data);
-int		destroy_struct(t_fork *fork, t_philo *philo, t_data *data);
-void	print_log(char *str, long long timestamp, int philo_nb, t_data *data);
+int			ft_atoi(const char *str);
+size_t		ft_strlen(const char *str);
+int			throw_error(char *str);
+int			create_philos(t_philo *philo);
+int			*parse_arguments(int num, char **argv);
+void		test(t_philo *philo);
+int			init(t_fork **fork, t_philo **philo, t_data *data);
+int			destroy_struct(t_fork *fork, t_philo *philo, t_data *data);
+void		print_log(char *str, long long timestamp,
+				int philo_nb, t_data *data);
 long long	diff_time(long long t1, long long t2);
 long long	get_time(void);
-int 		*turn2(int *option);
+int			*turn2(int *option);
+int			my_usleep(int usec);
 
 #endif

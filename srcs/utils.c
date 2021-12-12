@@ -3,19 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmateo-t <mmateo-t@student.42madrid>       +#+  +:+       +#+        */
+/*   By: mmateo-t <mmateo-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 19:16:39 by mmateo-t          #+#    #+#             */
-/*   Updated: 2021/11/29 19:17:18 by mmateo-t         ###   ########.fr       */
+/*   Updated: 2021/12/12 14:30:10 by mmateo-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "philo.h"
 
 size_t	ft_strlen(const char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -25,7 +24,7 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
-int		ft_isdigit(int c)
+int	ft_isdigit(int c)
 {
 	if (c < 48 || c > 57)
 		return (0);
@@ -45,15 +44,15 @@ static int	is_negative(int negative)
 	}
 }
 
-int			ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
 	long int	num;
 	int			negative;
 
 	num = 0;
 	negative = 0;
-	while (*str && (*str == ' ' || *str == '\n' || *str == '\t' ||
-			*str == '\v' || *str == '\f' || *str == '\r'))
+	while (*str && (*str == ' ' || *str == '\n' || *str == '\t'
+			|| *str == '\v' || *str == '\f' || *str == '\r'))
 		++str;
 	if (*str == '-' || *str == '+')
 	{

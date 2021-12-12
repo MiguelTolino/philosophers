@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_arguments.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmateo-t <mmateo-t@student.42madrid>       +#+  +:+       +#+        */
+/*   By: mmateo-t <mmateo-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 10:06:42 by mmateo-t          #+#    #+#             */
-/*   Updated: 2021/11/29 14:41:47 by mmateo-t         ###   ########.fr       */
+/*   Updated: 2021/12/12 14:30:40 by mmateo-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	*parse_arguments(int num, char **argv)
 {
 	int	i;
-	int *option;
+	int	*option;
 
 	i = 1;
 	option = (int *)malloc(sizeof(int) * num);
