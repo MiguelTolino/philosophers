@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmateo-t <mmateo-t@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmateo-t <mmateo-t@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 11:50:16 by mmateo-t          #+#    #+#             */
-/*   Updated: 2021/12/12 22:14:56 by mmateo-t         ###   ########.fr       */
+/*   Updated: 2021/12/15 14:25:30 by mmateo-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	smart_sleep(long long time, t_data *data)
 	long long	i;
 
 	i = get_time();
-	while (!(data->deaded))
+	while (!(data->dieded))
 	{
 		if (diff_time(i, get_time()) >= time)
 			break ;
