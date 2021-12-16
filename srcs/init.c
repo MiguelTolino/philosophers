@@ -6,11 +6,25 @@
 /*   By: mmateo-t <mmateo-t@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 19:20:45 by mmateo-t          #+#    #+#             */
-/*   Updated: 2021/12/16 21:11:07 by mmateo-t         ###   ########.fr       */
+/*   Updated: 2021/12/16 21:31:21 by mmateo-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+int	set_data(t_data *data)
+{
+	data->fork = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t)
+			* data->params[NUM_OF_PHILOS]);
+	data->n_eaters = data->params[NUM_OF_PHILOS] / NUM_OF_FORKS;
+	data->all_ate = 0;
+	data->dieded = 0;
+	if (pthread_mutex_init(&data->print_mutex, NULL)
+		|| pthread_mutex_init(&data->access_mutex, NULL)
+		|| pthread_mutex_init(&data->eat_mutex, NULL))
+		return (1);
+	return (0);
+}
 
 int	init(t_philo **philo, t_data *data)
 {
@@ -20,13 +34,7 @@ int	init(t_philo **philo, t_data *data)
 	p = *philo;
 	i = 0;
 	p = (t_philo *)malloc(sizeof(t_philo) * data->params[NUM_OF_PHILOS]);
-	data->fork = (pthread_mutex_t*)malloc(sizeof(pthread_mutex_t) * data->params[NUM_OF_PHILOS]);
-	data->n_eaters = data->params[NUM_OF_PHILOS] / NUM_OF_FORKS;
-	data->all_ate = 0;
-	data->dieded = 0;
-	if (pthread_mutex_init(&data->print_mutex, NULL)
-		|| pthread_mutex_init(&data->access_mutex, NULL)
-		|| pthread_mutex_init(&data->eat_mutex, NULL))
+	if (set_data(data))
 		return (1);
 	while (i < data->params[NUM_OF_PHILOS])
 	{

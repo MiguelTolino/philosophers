@@ -6,7 +6,7 @@
 /*   By: mmateo-t <mmateo-t@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 14:34:37 by mmateo-t          #+#    #+#             */
-/*   Updated: 2021/12/16 21:18:01 by mmateo-t         ###   ########.fr       */
+/*   Updated: 2021/12/16 21:33:28 by mmateo-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,12 +78,12 @@ void	*eat_think_sleep(void *philo)
 		usleep(100);
 	while (!data->dieded)
 	{
-			philo_eats(p);
-			if (data->all_ate)
-				break ;
-			print_log("is sleeping", p->id, data);
-			smart_sleep(data->params[TIME_TO_SLEEP], data);
-			print_log("is thinking", p->id, data);
+		philo_eats(p);
+		if (data->all_ate)
+			break ;
+		print_log("is sleeping", p->id, data);
+		smart_sleep(data->params[TIME_TO_SLEEP], data);
+		print_log("is thinking", p->id, data);
 	}
 	return (NULL);
 }
