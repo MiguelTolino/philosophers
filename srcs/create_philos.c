@@ -6,7 +6,7 @@
 /*   By: mmateo-t <mmateo-t@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 14:34:37 by mmateo-t          #+#    #+#             */
-/*   Updated: 2021/12/16 21:33:28 by mmateo-t         ###   ########.fr       */
+/*   Updated: 2021/12/17 00:17:56 by mmateo-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,25 @@ void	philo_eats(t_philo *p)
 	print_log("has taken left fork", p->id, data);
 	pthread_mutex_lock(&data->fork[p->right_fork]);
 	print_log("has taken right fork", p->id, data);
-	pthread_mutex_lock(&data->eat_mutex);
 	print_log("is eating", p->id, data);
 	p->time_last_meal = get_time();
-	pthread_mutex_unlock(&data->eat_mutex);
 	smart_sleep(data->params[TIME_TO_EAT], data);
 	p->has_ate++;
 	pthread_mutex_unlock(&data->fork[p->left_fork]);
 	pthread_mutex_unlock(&data->fork[p->right_fork]);
+}
+
+void	check_all_eat(t_philo *philo, t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (data->params[NUM_OF_TIMES_EAT] > 0
+		&& i < data->params[NUM_OF_PHILOS]
+		&& philo[i].has_ate >= data->params[NUM_OF_TIMES_EAT])
+		i++;
+	if (i == data->params[NUM_OF_PHILOS])
+		data->all_ate = 1;
 }
 
 void	death_checker(t_philo *philo)
@@ -38,7 +49,7 @@ void	death_checker(t_philo *philo)
 	long long	time;
 
 	data = philo->data;
-	while (!(data->all_ate) && !(data->dieded))
+	while (!(data->all_ate))
 	{
 		i = 0;
 		while (i < data->params[NUM_OF_PHILOS] && !(data->dieded))
@@ -51,21 +62,14 @@ void	death_checker(t_philo *philo)
 				data->dieded = 1;
 			}
 			pthread_mutex_unlock(&data->access_mutex);
+			usleep(100);
 			i++;
 		}
-		usleep(100);
 		if (data->dieded)
 			break ;
- 		i = 0;
-/* 		while (data->params[NUM_OF_TIMES_EAT] > 0 && i < data->params[NUM_OF_PHILOS] && philo[i].has_ate >= data->params[NUM_OF_TIMES_EAT])
-			i++;
-		if (i == data->params[NUM_OF_PHILOS])
-			data->all_ate = 1;
-	} */
+		check_all_eat(philo, data);
 	}
 }
-
-	//FIX: Si han comido las sufientes veces || BIG NUMBER OF PhiLOS
 
 void	*eat_think_sleep(void *philo)
 {
@@ -75,7 +79,7 @@ void	*eat_think_sleep(void *philo)
 	p = (t_philo *)philo;
 	data = p->data;
 	if (p->id % 2 == 0)
-		usleep(100);
+		usleep(1000);
 	while (!data->dieded)
 	{
 		philo_eats(p);

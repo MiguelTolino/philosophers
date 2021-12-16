@@ -6,7 +6,7 @@
 /*   By: mmateo-t <mmateo-t@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 19:20:45 by mmateo-t          #+#    #+#             */
-/*   Updated: 2021/12/16 21:31:21 by mmateo-t         ###   ########.fr       */
+/*   Updated: 2021/12/17 00:07:01 by mmateo-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ int	set_data(t_data *data)
 	data->all_ate = 0;
 	data->dieded = 0;
 	if (pthread_mutex_init(&data->print_mutex, NULL)
-		|| pthread_mutex_init(&data->access_mutex, NULL)
-		|| pthread_mutex_init(&data->eat_mutex, NULL))
+		|| pthread_mutex_init(&data->access_mutex, NULL))
 		return (1);
 	return (0);
 }
