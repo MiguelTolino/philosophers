@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mmateo-t <mmateo-t@student.42madrid>       +#+  +:+       +#+         #
+#    By: mmateo-t <mmateo-t@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/24 16:04:19 by user42            #+#    #+#              #
-#    Updated: 2021/12/16 20:52:58 by mmateo-t         ###   ########.fr        #
+#    Updated: 2022/02/07 17:41:06 by mmateo-t         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ SRCS := $(wildcard $(SRCS_DIR)*.c)
 OBJS := $(SRCS:%.c=%.o)
 NAME:= philo
 CC:= gcc
-CFLAGS:= -Wall -Werror -Wextra -g
+CFLAGS:= -Wall -Werror -Wextra
 THREADF:= -pthread
 RM :=	rm -rvf
 DEBUG_FLAG:= -g

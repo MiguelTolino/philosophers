@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   destroy_struct.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmateo-t <mmateo-t@student.42madrid>       +#+  +:+       +#+        */
+/*   By: mmateo-t <mmateo-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 10:56:07 by mmateo-t          #+#    #+#             */
-/*   Updated: 2021/12/17 00:07:14 by mmateo-t         ###   ########.fr       */
+/*   Updated: 2022/02/07 18:15:16 by mmateo-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ int	destroy_struct(t_philo *philo, t_data *data)
 	int	i;
 
 	i = 0;
-	while (i < philo->data->params[NUM_OF_PHILOS])
+	while (i < philo->data->params[NUM_OF_PHILOS]
+		&& philo->data->params[NUM_OF_PHILOS] != 1)
 	{
 		if (pthread_join(philo[i].th, NULL) != 0)
 			return (1);

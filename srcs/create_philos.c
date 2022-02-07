@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_philos.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmateo-t <mmateo-t@student.42madrid>       +#+  +:+       +#+        */
+/*   By: mmateo-t <mmateo-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 14:34:37 by mmateo-t          #+#    #+#             */
-/*   Updated: 2021/12/17 00:17:56 by mmateo-t         ###   ########.fr       */
+/*   Updated: 2022/02/07 18:10:05 by mmateo-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	death_checker(t_philo *philo)
 		{
 			pthread_mutex_lock(&data->access_mutex);
 			time = diff_time(philo[i].time_last_meal, get_time());
-			if (time > data->params[TIME_TO_DIE])
+			if (time >= data->params[TIME_TO_DIE])
 			{
 				print_log("died", philo[i].id, data);
 				data->dieded = 1;
